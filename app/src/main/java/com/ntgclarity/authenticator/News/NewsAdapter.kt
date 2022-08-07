@@ -10,22 +10,33 @@ import com.bumptech.glide.Glide
 import com.example.example.Articles
 import com.ntgclarity.authenticator.R
 
-class NewsAdapter(var article: Array<Articles>?) :
+class NewsAdapter(
+    var article: Array<Articles>?,
+    private val listener: OnItemClickListener
+) :
     RecyclerView.Adapter<NewsAdapter.WordViewHolder>() {
-    class WordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+    inner class WordViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
         val tvWord: TextView
         val ivPhoto: ImageView
 
         init {
             tvWord = view.findViewById(R.id.tv_word)
             ivPhoto = view.findViewById(R.id.iv_photo)
-//            view.setOnClickListener{
-//                startActivity(
-//                 TODO go to url
-//                  Intent(Intent.ACTION_VIEW).setData(article.url?.toUri())
-//                )
-//            }
+            view.setOnClickListener(this)
         }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
+
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
@@ -47,5 +58,6 @@ class NewsAdapter(var article: Array<Articles>?) :
 
     override fun getItemCount(): Int = article?.size ?: 0
 }
+
 
 data class Word(val word: String, val url: String)

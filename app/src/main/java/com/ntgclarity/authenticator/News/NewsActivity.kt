@@ -1,8 +1,7 @@
-package com.ntgclarity.authenticator.words
+package com.ntgclarity.authenticator.News
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.example.Articles
@@ -14,31 +13,30 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// https://newsapi.org/v2/everything?q=tesla&from=2022-07-07&sortBy=publishedAt&apiKey=2f956d41803f48fdaa4772e30c68deea
+class NewsActivity : AppCompatActivity(), Callback<NewsClass?> {
+    // https://newsapi.org/
+    val Topic = "Tesla"
+    val ApiKey = "2f956d41803f48fdaa4772e30c68deea"
 
-class WordsActivity : AppCompatActivity(), Callback<NewsClass?> {
-    var adapter: WordsAdapter? = null
+    var adapter: NewsAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_words)
 
-        //val layoutManager = LinearLayoutManager(this)
-        //val layoutManager = GridLayoutManager(this, 2)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, 1)
 
+        val News = generateNews()
+        adapter = NewsAdapter(News)
+        val rvNews: RecyclerView = findViewById(R.id.rv_words)
 
-        val words = generateNews()
-        adapter = WordsAdapter(words)
-        val rvWords: RecyclerView = findViewById(R.id.rv_words)
-
-        rvWords.layoutManager = staggeredGridLayoutManager
-        rvWords.adapter = adapter
+        rvNews.layoutManager = staggeredGridLayoutManager
+        rvNews.adapter = adapter
         getNews()
     }
 
     private fun getNews() {
-        service.everything("Tesla", "2f956d41803f48fdaa4772e30c68deea")?.enqueue(this)
+        service.everything(Topic, ApiKey)?.enqueue(this)
     }
 
     private fun generateNews(): Array<Articles> {

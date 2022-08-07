@@ -1,19 +1,17 @@
-package com.ntgclarity.authenticator.words
+package com.ntgclarity.authenticator.News
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.example.Articles
 import com.ntgclarity.authenticator.R
 
-class WordsAdapter(var article: Array<Articles>?) :
-    RecyclerView.Adapter<WordsAdapter.WordViewHolder>() {
+class NewsAdapter(var article: Array<Articles>?) :
+    RecyclerView.Adapter<NewsAdapter.WordViewHolder>() {
     class WordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvWord: TextView
         val ivPhoto: ImageView

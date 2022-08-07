@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.ntgclarity.authenticator.words.WordsActivity
+import com.ntgclarity.authenticator.News.NewsActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
     fun startWords() {
-        val intent = Intent(this, WordsActivity::class.java)
+        val intent = Intent(this, NewsActivity::class.java)
 
         startActivity(intent)
     }

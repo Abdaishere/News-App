@@ -2,8 +2,8 @@
 
 Android app for finding news from any Area and on different topics
 
-![](MainScreen.png)
+<img height="350" src="MainScreen.png" width="190"/>
 
-![](Map.png)
+<img height="350" src="Map.png" width="190"/>
 
-![](NewsScreen.png) ![](NewsPage.gif) ![](NewsScreenArbic.png)
+<img height="340" src="NewsScreen.png" width="180"/> <img height="340" src="NewsPage.gif" width="180"/> <img height="340" src="NewsScreenArbic.png" width="180"/>

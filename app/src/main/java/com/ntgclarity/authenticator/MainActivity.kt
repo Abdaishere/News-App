@@ -14,6 +14,10 @@ class MainActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btn_login)
         val btnRegistration = findViewById<Button>(R.id.btn_register)
 
+        // TODO add langue to the top right of the screen arabic and english
+        // TODO add a place to chose what topic to chose from in the api
+
+        // TODO add map API to locate the person or chose where the news come from
         btnRegistration.setOnClickListener {
             startRegistration()
         }

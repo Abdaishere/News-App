@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/username_hint"
         android:inputType="textPersonName"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
@@ -22,7 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/password_hint"
         android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
         tools:layout_editor_absoluteX="117dp" />

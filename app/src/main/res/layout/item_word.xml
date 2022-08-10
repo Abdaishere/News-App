@@ -1,37 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp">
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:elevation="4dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="12dp">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <ImageView
+
+        <com.flaviofaria.kenburnsview.KenBurnsView
             android:id="@+id/iv_photo"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_104"
-            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/transparent_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/article_description"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="18dp"
+            android:text="On today's news"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/article_author" />
+
+        <TextView
+            android:id="@+id/article_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:textColor="@color/gold"
+            android:text="By Someone"
+            app:layout_constraintStart_toStartOf="@+id/tv_word"
+            app:layout_constraintTop_toBottomOf="@+id/tv_word" />
+
         <TextView
             android:id="@+id/tv_word"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="200dp"
+            android:text="Great news"
             android:ellipsize="end"
-            android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/iv_photo"
-            tools:layout_editor_absoluteX="16dp"
-            tools:text="Random word" />
+            android:singleLine="true"
+            android:maxWidth="325dp"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.cardview.widget.CardView>

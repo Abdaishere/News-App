@@ -1,28 +1,34 @@
 package com.ntgclarity.authenticator.News
 
+
+import android.widget.ImageView
+import android.widget.TextView
+import com.example.example.Articles
+import com.ntgclarity.authenticator.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.example.Articles
-import com.ntgclarity.authenticator.R
+import com.squareup.picasso.Picasso
 
 class NewsAdapter(
     var article: Array<Articles>?,
-    private val listener: OnItemClickListener
+    private val listener: OnItemClickListener,
 ) :
-    RecyclerView.Adapter<NewsAdapter.WordViewHolder>() {
+    RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    inner class WordViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+    inner class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
         val tvWord: TextView
+        val tvdescription: TextView
+        val tvauthor: TextView
         val ivPhoto: ImageView
 
         init {
             tvWord = view.findViewById(R.id.tv_word)
+            tvauthor = view.findViewById(R.id.article_author)
             ivPhoto = view.findViewById(R.id.iv_photo)
+            tvdescription = view.findViewById(R.id.article_description)
+
             view.setOnClickListener(this)
         }
 
@@ -39,21 +45,26 @@ class NewsAdapter(
         fun onItemClick(position: Int)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.item_word, parent, false)
 
-        return WordViewHolder(view)
+        return NewsViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
-        val word = article?.get(position)
+    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+        val article = article?.get(position)
 
-        holder.tvWord.text = word?.title
+        // image
+        Picasso.get().load(article?.urlToImage).into(holder.ivPhoto)
 
-        Glide.with(holder.itemView)
-            .load(word?.urlToImage)
-            .into(holder.ivPhoto)
+        // start animation
+        holder.ivPhoto.animate()
+        holder.tvdescription.text = article?.description
+        holder.tvWord.text = article?.title
+        holder.tvauthor.text = "By " + article?.author
+
+
     }
 
     override fun getItemCount(): Int = article?.size ?: 0

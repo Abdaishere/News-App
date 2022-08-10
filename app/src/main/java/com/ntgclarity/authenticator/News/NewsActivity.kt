@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.example.Articles
@@ -15,6 +17,7 @@ import com.ntgclarity.authenticator.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import www.sanju.tourism.Adapter.CenterZoomLayoutManager
 
 class NewsActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener, Callback<NewsClass?> {
     // https://newsapi.org/
@@ -26,16 +29,37 @@ class NewsActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener, Callb
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_words)
+        setContentView(R.layout.swipe_view)
+//
+//        val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, 1)
+//
+//        adapter = NewsAdapter(News, this)
+//        val rvNews: RecyclerView = findViewById(R.id.rv_article)
+//
+//        rvNews.layoutManager = staggeredGridLayoutManager
+//        rvNews.adapter = adapter
+//        getNews()
 
-        val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, 1)
+        // init
+        val articleRV = findViewById<RecyclerView>(R.id.rv_article)
 
+        val layoutManager = CenterZoomLayoutManager(context = this)
+
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        layoutManager.reverseLayout = true
+        layoutManager.stackFromEnd = true
+        articleRV.layoutManager = layoutManager
+
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(articleRV)
+        articleRV.isNestedScrollingEnabled = false
+
+        // add items to array list
         adapter = NewsAdapter(News, this)
-        val rvNews: RecyclerView = findViewById(R.id.rv_words)
-
-        rvNews.layoutManager = staggeredGridLayoutManager
-        rvNews.adapter = adapter
         getNews()
+
+        articleRV.adapter = adapter
+
     }
 
     private fun getNews() {

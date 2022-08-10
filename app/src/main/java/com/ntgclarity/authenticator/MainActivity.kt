@@ -20,12 +20,12 @@ class MainActivity : AppCompatActivity() {
         if (info != null) {
             findViewById<EditText>(R.id.et_Location)?.setText(info?.get("location").toString())
         } else {
-            findViewById<EditText>(R.id.et_category)?.setText("health")
-            findViewById<EditText>(R.id.et_Location)?.setText("Egypt")
+            findViewById<EditText>(authenticator.R.id.et_category)?.setText("health")
+            findViewById<EditText>(authenticator.R.id.et_Location)?.setText("Egypt")
         }
 
-        val btnNews = findViewById<Button>(R.id.btn_News)
-        val btnLocation = findViewById<Button>(R.id.btn_Location)
+        val btnNews = findViewById<Button>(authenticator.R.id.btn_News)
+        val btnLocation = findViewById<Button>(authenticator.R.id.btn_Location)
 
 
         // TODO add language to the top right of the screen arabic and english
@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, NewsActivity::class.java)
 
         val info = Bundle()
-        info.putString("category", findViewById<EditText>(R.id.et_category)?.text.toString())
-        info.putString("location", findViewById<EditText>(R.id.et_Location)?.text.toString())
+        info.putString("category", findViewById<EditText>(authenticator.R.id.et_category)?.text.toString())
+        info.putString("location", findViewById<EditText>(authenticator.R.id.et_Location)?.text.toString())
         intent.putExtras(info)
 
         startActivity(intent)

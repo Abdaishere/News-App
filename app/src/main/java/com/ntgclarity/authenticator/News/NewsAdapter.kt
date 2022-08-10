@@ -4,7 +4,6 @@ package com.ntgclarity.authenticator.News
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.example.Articles
-import com.ntgclarity.authenticator.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,10 +23,10 @@ class NewsAdapter(
         val ivPhoto: ImageView
 
         init {
-            tvWord = view.findViewById(R.id.tv_word)
-            tvauthor = view.findViewById(R.id.article_author)
-            ivPhoto = view.findViewById(R.id.iv_photo)
-            tvdescription = view.findViewById(R.id.article_description)
+            tvWord = view.findViewById(authenticator.R.id.tv_word)
+            tvauthor = view.findViewById(authenticator.R.id.article_author)
+            ivPhoto = view.findViewById(authenticator.R.id.iv_photo)
+            tvdescription = view.findViewById(authenticator.R.id.article_description)
 
             view.setOnClickListener(this)
         }
@@ -47,7 +46,7 @@ class NewsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_word, parent, false)
+        val view = inflater.inflate(authenticator.R.layout.item_word, parent, false)
 
         return NewsViewHolder(view)
     }

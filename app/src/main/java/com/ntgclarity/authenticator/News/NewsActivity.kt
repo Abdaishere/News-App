@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.example.Articles
 import com.example.example.NewsClass
 import com.ntgclarity.authenticator.api.service
-import com.ntgclarity.authenticator.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,7 +43,7 @@ class NewsActivity() : AppCompatActivity(),
 
         supportActionBar?.hide();
 
-        setContentView(R.layout.swipe_view)
+        setContentView(authenticator.R.layout.swipe_view)
 
 
         // Gather Data From Main Activity
@@ -53,7 +52,7 @@ class NewsActivity() : AppCompatActivity(),
         Location = info?.get("location").toString()
 
         // init
-        val articleRV = findViewById<RecyclerView>(R.id.rv_article)
+        val articleRV = findViewById<RecyclerView>(authenticator.R.id.rv_article)
 
         val layoutManager = CenterZoomLayoutManager(context = this)
 
@@ -104,7 +103,7 @@ class NewsActivity() : AppCompatActivity(),
 
     override fun onResponse(call: Call<NewsClass?>, response: Response<NewsClass?>) {
         if (response.body()?.totalResults == 0) {
-            findViewById<TextView>(R.id.textView).setText("Not Found")
+            findViewById<TextView>(authenticator.R.id.textView).setText("Not Found")
             return
         }
 
@@ -114,7 +113,7 @@ class NewsActivity() : AppCompatActivity(),
         if (title.isEmpty())
             title = Location
 
-        findViewById<TextView>(R.id.textView).setText("Top in ${title}")
+        findViewById<TextView>(authenticator.R.id.textView).setText("Top in ${title}")
         adapter?.notifyDataSetChanged()
     }
 

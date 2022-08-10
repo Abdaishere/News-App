@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.Places
 import java.util.*
 import com.ntgclarity.authenticator.MainActivity
+import authenticator.R
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -37,7 +38,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(authenticator.R.layout.activity_maps)
+        setContentView(R.layout.activity_maps)
         // Fetching API_KEY which we wrapped
         val ai: ApplicationInfo = applicationContext.packageManager
             .getApplicationInfo(applicationContext.packageName, PackageManager.GET_META_DATA)
@@ -52,25 +53,25 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Initializing Map
         val mapFragment =
-            supportFragmentManager.findFragmentById(authenticator.R.id.map) as SupportMapFragment
+            supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         // Initializing fused location client
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         // Adding functionality to the button
-        val btn = findViewById<ImageButton>(authenticator.R.id.currentLoc)
+        val btn = findViewById<ImageButton>(R.id.currentLoc)
         btn.setOnClickListener {
             getLastLocation()
         }
 
-        val btnapply = findViewById<ImageButton>(authenticator.R.id.apply)
+        val btnapply = findViewById<ImageButton>(R.id.apply)
         btnapply.setOnClickListener {
-            gotomain()
+            goToMain()
         }
     }
 
-    private fun gotomain() {
+    private fun goToMain() {
         val intent = Intent(this, MainActivity::class.java)
 
         val gcd = Geocoder(this.applicationContext, Locale.getDefault())

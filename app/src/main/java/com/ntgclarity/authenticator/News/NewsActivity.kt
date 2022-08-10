@@ -11,6 +11,7 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import authenticator.R
 import com.example.example.Articles
 import com.example.example.NewsClass
 import com.ntgclarity.authenticator.api.service
@@ -20,7 +21,7 @@ import retrofit2.Response
 import www.sanju.tourism.Adapter.CenterZoomLayoutManager
 import java.util.*
 
-class NewsActivity() : AppCompatActivity(),
+class NewsActivity : AppCompatActivity(),
     NewsAdapter.OnItemClickListener, Callback<NewsClass?> {
     // https://newsapi.org/
     val ApiKey = "2f956d41803f48fdaa4772e30c68deea"
@@ -41,9 +42,9 @@ class NewsActivity() : AppCompatActivity(),
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        supportActionBar?.hide();
+        supportActionBar?.hide()
 
-        setContentView(authenticator.R.layout.swipe_view)
+        setContentView(R.layout.swipe_view)
 
 
         // Gather Data From Main Activity
@@ -52,7 +53,7 @@ class NewsActivity() : AppCompatActivity(),
         Location = info?.get("location").toString()
 
         // init
-        val articleRV = findViewById<RecyclerView>(authenticator.R.id.rv_article)
+        val articleRV = findViewById<RecyclerView>(R.id.rv_article)
 
         val layoutManager = CenterZoomLayoutManager(context = this)
 
@@ -103,7 +104,7 @@ class NewsActivity() : AppCompatActivity(),
 
     override fun onResponse(call: Call<NewsClass?>, response: Response<NewsClass?>) {
         if (response.body()?.totalResults == 0) {
-            findViewById<TextView>(authenticator.R.id.textView).setText("Not Found")
+            findViewById<TextView>(R.id.textView).setText("Not Found")
             return
         }
 
@@ -113,7 +114,7 @@ class NewsActivity() : AppCompatActivity(),
         if (title.isEmpty())
             title = Location
 
-        findViewById<TextView>(authenticator.R.id.textView).setText("Top in ${title}")
+        findViewById<TextView>(R.id.textView).setText("Top in ${title}")
         adapter?.notifyDataSetChanged()
     }
 
@@ -126,7 +127,7 @@ class NewsActivity() : AppCompatActivity(),
         if (clicked != null) {
             Toast.makeText(this, "Opening on \"${clicked.source?.name}\"", Toast.LENGTH_SHORT)
                 .show()
-            startActivity(Intent(Intent.ACTION_VIEW).setData(clicked?.url?.toUri()))
+            startActivity(Intent(Intent.ACTION_VIEW).setData(clicked.url?.toUri()))
         }
     }
 

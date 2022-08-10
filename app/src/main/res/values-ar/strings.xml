@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">الاخبار</string>
     <string name="News">الاخبار</string>
     <string name="Location">تحديد المكان</string>
+    <string name="Category">الموضوع</string>
+    <string name="app_name">الاخبار</string>
 </resources>

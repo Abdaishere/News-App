@@ -56,13 +56,18 @@ class NewsAdapter(
         val article = article?.get(position)
 
         // image
-        Picasso.get().load(article?.urlToImage).into(holder.ivPhoto)
+        if (article?.urlToImage?.isEmpty() == false)
+            Picasso.get().load(article?.urlToImage).into(holder.ivPhoto)
 
         // start animation
         holder.ivPhoto.animate()
+
         holder.tvdescription.text = article?.description
+
         holder.tvWord.text = article?.title
-        holder.tvauthor.text = "By " + article?.author
+
+        if (article?.author?.isEmpty() == false)
+            holder.tvauthor.text = "By " + article?.author
 
 
     }

@@ -1,5 +1,4 @@
 # News-App
-Android app for Tesla related news
 
-![](login.png)
-![](feed.png)
+Android app for finding news from any Area and on different topics
+

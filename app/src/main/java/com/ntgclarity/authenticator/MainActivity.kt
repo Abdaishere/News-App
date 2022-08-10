@@ -27,10 +27,6 @@ class MainActivity : AppCompatActivity() {
         val btnNews = findViewById<Button>(R.id.btn_News)
         val btnLocation = findViewById<Button>(R.id.btn_Location)
 
-
-        // TODO add language to the top right of the screen arabic and english
-        // TODO add a place to choose what category to chose from in the api
-
         btnLocation.setOnClickListener {
             chooseLocation()
         }

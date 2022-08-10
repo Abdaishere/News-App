@@ -1,6 +1,8 @@
 package com.ntgclarity.authenticator.News
 
 import android.content.Intent
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
@@ -23,14 +25,14 @@ import java.util.*
 
 class NewsActivity : AppCompatActivity(),
     NewsAdapter.OnItemClickListener, Callback<NewsClass?> {
-    // https://newsapi.org/
-    val ApiKey = "2f956d41803f48fdaa4772e30c68deea"
 
-    var adapter: NewsAdapter? = null
-    var News = generateNews()
+    private var apikey: String = ""
 
-    var Category = ""
-    var Location = ""
+    private var adapter: NewsAdapter? = null
+    private var News = generateNews()
+
+    private var Category = ""
+    private var Location = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +49,12 @@ class NewsActivity : AppCompatActivity(),
         setContentView(R.layout.swipe_view)
 
 
-        // Gather Data From Main Activity
+        // Gather Data
+        val ai: ApplicationInfo = applicationContext.packageManager
+            .getApplicationInfo(applicationContext.packageName, PackageManager.GET_META_DATA)
+        val value = ai.metaData["com.news.api"]
+        apikey = value.toString()
+
         val info = intent.extras
         Category = info?.get("category").toString()
         Location = info?.get("location").toString()
@@ -80,13 +87,13 @@ class NewsActivity : AppCompatActivity(),
         println("Searching about $Category")
         println(code)
 
-        service.top(Category, code, ApiKey)?.enqueue(this)
+        service.top(Category, code, apikey)?.enqueue(this)
 
     }
 
     private fun generateNews(): Array<Articles> {
-        var imgwidth: Int = 1280
-        var imgheigh: Int = 720
+        var imgwidth = 1280
+        var imgheigh = 720
 
         return Array(200) {
             Articles(
@@ -103,7 +110,7 @@ class NewsActivity : AppCompatActivity(),
     }
 
     override fun onResponse(call: Call<NewsClass?>, response: Response<NewsClass?>) {
-        if (response.body()?.totalResults == 0) {
+        if (response.body()?.articles?.isEmpty() == true) {
             findViewById<TextView>(R.id.textView).setText("Not Found")
             return
         }

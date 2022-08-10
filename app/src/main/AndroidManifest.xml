@@ -22,6 +22,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
 
+        <meta-data
+            android:name="com.news.api"
+            android:value="${News_Api_Key}" />
+
         <activity
             android:name="com.ntgclarity.authenticator.Map.MapsActivity"
             android:exported="false"

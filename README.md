@@ -6,4 +6,4 @@ Android app for finding news from any Area and on different topics
 
 ![](Map.png)
 
-![](NewsScreen.png)![](NewsScreenArbic.png)
+![](NewsScreen.png) ![](NewsPage.gif) ![](NewsScreenArbic.png)

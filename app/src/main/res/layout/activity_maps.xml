@@ -15,7 +15,6 @@
         tools:context=".MapsActivity" />
 
     <ImageView
-        android:id="@+id/pin"
         android:layout_width="104dp"
         android:layout_height="85dp"
         android:layout_alignRight="@id/currentLoc"

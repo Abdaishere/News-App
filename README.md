@@ -2,9 +2,9 @@
 
 The News Finder App is an Android application that allows users to find news from any area and on different topics. The app supports both English and Arabic languages and comes with a sleek and elegant design that is available in both dark and light themes.
 
-<img height="350" src="MainScreen.png" width="190"/> <img height="350" src="Map.png" width="190"/>
+<img height="350" src="MainScreen.png"/> <img height="350" src="Map.png"/>
 
-<img height="340" src="NewsScreen.png" width="180"/> <img height="340" src="NewsPage.gif" width="180"/> <img height="340" src="NewsScreenArbic.png" width="180"/>
+<img height="340" src="NewsPage.gif"/> <img height="340" src="NewsScreenArbic.png" />
 
 ## Features
 
